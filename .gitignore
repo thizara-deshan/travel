@@ -1,0 +1,33 @@
+# Docker-related gitignore additions
+
+# Environment files (contains sensitive data)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Docker volumes and data
+docker-data/
+postgres-data/
+
+# Docker Compose override files (except dev)
+docker-compose.override.yml
+docker-compose.*.yml
+!docker-compose.dev.yml
+
+# Docker build context
+.dockerignore
+
+# Runtime logs
+*.log
+logs/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db

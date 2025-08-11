@@ -1,0 +1,99 @@
+version: "3.8"
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: bittravel_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: bittravel_user
+      POSTGRES_PASSWORD: bittravel_password
+      POSTGRES_DB: bittravel_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backend/prisma/migrations:/docker-entrypoint-initdb.d
+    networks:
+      - bittravel_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U bittravel_user -d bittravel_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Backend Service
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: bittravel_backend
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: 5000
+      DATABASE_URL: postgresql://bittravel_user:bittravel_password@postgres:5432/bittravel_db
+      JWT_SECRET: your_jwt_secret_here_change_in_production
+      CORS_ORIGIN: http://localhost:3000
+    ports:
+      - "5000:5000"
+    volumes:
+      - backend_receipts:/app/src/receipts
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - bittravel_network
+    healthcheck:
+      test: ["CMD", "node", "healthcheck.js"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Frontend Service
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: bittravel_frontend
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      NEXT_PUBLIC_API_URL: http://backend:5000/api
+    ports:
+      - "3000:3000"
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks:
+      - bittravel_network
+
+  # Prisma Migration Service (runs once on startup)
+  prisma-migrate:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: bittravel_prisma_migrate
+    restart: "no"
+    environment:
+      DATABASE_URL: postgresql://bittravel_user:bittravel_password@postgres:5432/bittravel_db
+    command: ["sh", "-c", "npx prisma migrate deploy && npx prisma generate"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - bittravel_network
+
+# Networks
+networks:
+  bittravel_network:
+    driver: bridge
+
+# Volumes
+volumes:
+  postgres_data:
+    driver: local
+  backend_receipts:
+    driver: local
