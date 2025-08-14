@@ -171,7 +171,7 @@ export default function EmployeesManageSection({
       }
     };
     fetchEmployees();
-  }, []);
+  }, [apiBaseUrl]);
 
   if (isLoading) {
     return (

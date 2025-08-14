@@ -1,3 +1,5 @@
+"use client";
+
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || "/api";
 
 // Get a cookie value by name from document.cookie
