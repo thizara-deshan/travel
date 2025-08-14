@@ -1,30 +1,24 @@
-"use client";
+"use server";
+
+import { cookies } from "next/headers";
 
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || "/api";
 
-// Get a cookie value by name from document.cookie
-function getCookie(name: string) {
-  return (
-    document.cookie
-      .split("; ")
-      .find((row) => row.startsWith(`${name}=`))
-      ?.split("=")[1] || null
-  );
-}
-
 export async function verifyToken() {
-  const token = getCookie("token");
+  const cookieStore = await cookies();
+  const token = cookieStore.get("token")?.value;
   console.log("Verifying token:", token);
 
   if (!token) return { valid: false, user: null };
 
   try {
     const response = await fetch(`${apiBaseUrl}/auth/verify`, {
+      credentials: "include",
       method: "GET",
-      credentials: "include", // include cookies automatically
-      headers: { Cookie: `token=${token}` }, // optional, for same-origin
+      headers: { Cookie: `token=${token}` },
     });
 
+    console.log("Token verification response:", response);
     if (!response.ok) throw new Error("Verification failed");
 
     const data = await response.json();
@@ -36,20 +30,19 @@ export async function verifyToken() {
 }
 
 export async function logout() {
-  const token = getCookie("token");
+  const cookieStore = await cookies();
+  const token = cookieStore.get("token")?.value;
 
   try {
     const response = await fetch(`${apiBaseUrl}/auth/logout`, {
-      method: "POST",
       credentials: "include",
-      headers: { Cookie: `token=${token}` }, // optional
+      method: "POST",
+      headers: { Cookie: `token=${token}` },
     });
 
     if (!response.ok) throw new Error("Logout failed");
 
-    // Clear cookie in browser
-    document.cookie = "token=; path=/; max-age=0";
-
+    cookieStore.delete("token");
     return { success: true };
   } catch (error) {
     console.error("Logout error:", error);
