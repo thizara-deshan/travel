@@ -1,6 +1,4 @@
-const apiBaseUrl =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
-
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || "/api";
 export async function logout() {
   try {
     const response = await fetch(`${apiBaseUrl}/auth/logout`, {

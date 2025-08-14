@@ -16,9 +16,7 @@ import { useTourPackageForm } from "@/lib/validation/tourPackageForm";
 import type { TourPackageFormValues } from "@/lib/validation/tourPackageForm";
 import { useFieldArray } from "react-hook-form";
 
-const apiBaseUrl =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
-
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || "/api";
 
 interface CreatePackageProps {
   onSectionChange: (section: string) => void;

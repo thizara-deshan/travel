@@ -11,8 +11,7 @@ import { Separator } from "@/components/ui/separator";
 
 // Types based on your Prisma model
 import type { Destination, TourPackage } from "@/lib/types";
-const apiBaseUrl =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || "/api";
 interface DetailedDestination extends Destination {
   tourPackage: TourPackage[];
 }

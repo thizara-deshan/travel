@@ -44,8 +44,7 @@ import Image from "next/image";
 import type { TourPackage } from "@/lib/types";
 import { DetailedBooking } from "./Dashboard";
 
-const apiBaseUrl =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || "/api";
 interface ModifyBookingFormProps {
   booking: DetailedBooking;
   onBack: () => void;

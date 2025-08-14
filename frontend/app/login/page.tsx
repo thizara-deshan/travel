@@ -24,8 +24,7 @@ import {
 import { Loader2, Eye, EyeOff, Mail, Lock, Plane } from "lucide-react";
 import { useLoginForm, LoginFormValues } from "@/lib/validation/login";
 
-const apiBaseUrl =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || "/api";
 
 export default function LoginPage() {
   const router = useRouter();

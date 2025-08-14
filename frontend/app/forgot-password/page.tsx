@@ -40,8 +40,7 @@ import type {
 } from "@/lib/validation/login";
 import { useState } from "react";
 
-const apiBaseUrl =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || "/api";
 
 type Step = "email" | "otp" | "reset" | "success";
 

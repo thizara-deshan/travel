@@ -59,8 +59,7 @@ import { Employee, UnassignedBooking, AssignedBooking } from "@/lib/types";
 
 import { BookingDetailView } from "./BookingDetailView";
 
-const apiBaseUrl =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || "/api";
 
 interface AllBookingsProps {
   user: {

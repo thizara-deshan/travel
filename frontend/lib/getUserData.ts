@@ -1,8 +1,7 @@
 "use server";
 
 import { cookies } from "next/headers";
-const apiBaseUrl =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
 
 export async function getUserData() {
   const cookieStore = await cookies();

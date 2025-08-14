@@ -37,8 +37,7 @@ import { Loader2, Calendar, Users, DollarSign, MapPin } from "lucide-react";
 import Image from "next/image";
 import type { TourPackage } from "@/lib/types";
 
-const apiBaseUrl =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || "/api";
 
 type BookingFormProps = {
   selectedPackageId: number;

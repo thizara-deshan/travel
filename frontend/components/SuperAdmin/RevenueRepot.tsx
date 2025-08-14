@@ -22,8 +22,7 @@ import {
 } from "@/components/ui/table";
 import { DollarSign, Package, Calendar, RefreshCw } from "lucide-react";
 // import { string } from "zod";
-const apiBaseUrl =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || "/api";
 
 // Types
 interface RevenueData {

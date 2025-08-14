@@ -16,8 +16,7 @@ import {
 } from "lucide-react";
 import { UnassignedBooking, AssignedBooking } from "@/lib/types";
 import { Separator } from "@/components/ui/separator";
-const apiBaseUrl =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || "/api";
 
 export function BookingDetailView({
   booking,

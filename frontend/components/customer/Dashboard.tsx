@@ -9,8 +9,7 @@ import { useEffect, useState } from "react";
 import { Calendar, DollarSign, Package, Users } from "lucide-react";
 import { BookingDetailView } from "./BookingDetailView";
 import { CardHeader, CardTitle } from "@/components/ui/card";
-const apiBaseUrl =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || "/api";
 
 interface DashboardProps {
   onSectionChange: (section: string) => void;

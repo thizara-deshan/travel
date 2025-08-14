@@ -75,8 +75,7 @@ export default function EmployeesManageSection({
   const [employees, setEmployees] = useState<Employee[]>([]);
   const { handleSubmit, register } = useEmployeeForm();
 
-  const apiBaseUrl =
-    process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || "/api";
 
   const onSubmit = async (data: {
     name: string;

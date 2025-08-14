@@ -13,8 +13,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { PackageDetailView } from "./PackageDetailView";
 
-const apiBaseUrl =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || "/api";
 
 interface TourPackagesProps {
   onSectionChange: (section: string) => void;

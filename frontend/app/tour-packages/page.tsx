@@ -4,8 +4,7 @@ import { TourPackage } from "@/lib/types";
 import { PackageDetailView } from "@/components/PackageDetailView";
 import { useEffect, useState } from "react";
 
-const apiBaseUrl =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || "/api";
 
 export default function Page() {
   const [selectedPackage, setSelectedPackage] = useState<TourPackage | null>(

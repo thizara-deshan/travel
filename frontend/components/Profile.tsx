@@ -32,8 +32,7 @@ import { Trash2, Save, User, Shield, Eye, EyeOff } from "lucide-react";
 import { useProfileForm } from "@/lib/validation/profile";
 import type { ProfileFormValues } from "@/lib/validation/profile";
 
-const apiBaseUrl =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || "/api";
 
 interface User {
   id: number;

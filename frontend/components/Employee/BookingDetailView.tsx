@@ -26,8 +26,7 @@ import {
 
 import type { DetailedAssignedBooking } from "./AssignedBookings";
 
-const apiBaseUrl =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || "/api";
 
 interface BookingDetailViewProps {
   booking: DetailedAssignedBooking;

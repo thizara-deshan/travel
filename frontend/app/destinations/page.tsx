@@ -12,6 +12,8 @@ import { Separator } from "@/components/ui/separator";
 // Types based on your Prisma model
 import type { Destination, TourPackage } from "@/lib/types";
 
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || "/api";
+
 interface DetailedDestination extends Destination {
   tourPackage: TourPackage[];
 }
@@ -270,7 +272,7 @@ export default function Destinations() {
       try {
         setIsLoading(true);
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/tour-packages/get-destinations`,
+          `${apiBaseUrl}/tour-packages/get-destinations`,
           {
             method: "GET",
             credentials: "include",
@@ -300,7 +302,7 @@ export default function Destinations() {
     try {
       setIsLoadingDetails(true);
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/tour-packages/get-destinations/${destinationId}`,
+        `${apiBaseUrl}/tour-packages/get-destinations/${destinationId}`,
         {
           method: "GET",
           credentials: "include",

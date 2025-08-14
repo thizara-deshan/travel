@@ -35,8 +35,7 @@ import {
 } from "lucide-react";
 import { useRegisterForm, RegisterFormValues } from "@/lib/validation/login";
 
-const apiBaseUrl =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || "/api";
 
 export default function RegisterPage() {
   const router = useRouter();
