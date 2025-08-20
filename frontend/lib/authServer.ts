@@ -2,7 +2,7 @@
 
 import { cookies } from "next/headers";
 
-const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || "/api";
+const apiBaseUrl ="http://backend:5000/api";
 
 export async function verifyToken() {
   const cookieStore = await cookies();
